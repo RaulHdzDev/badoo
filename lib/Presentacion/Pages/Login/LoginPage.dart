@@ -16,64 +16,50 @@ class Login extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
-
     return Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
+      body: SafeArea(
+        top: false,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/images/backHome.png'),
-                      fit: BoxFit.cover),
-                  gradient: LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                      colors: [Colors.white, Colors.white]),
-                ),
-              ),
-              Container(
-                height: double.infinity,
-                child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 40.0,
-                    vertical: 100.0,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Bienvenido',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'OpenSans',
-                          fontSize: 35.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: EdgeInsets.all(30),
+                      child: Column(
+                        children: <Widget>[
+                          _header(),
+                          
+                          Padding(
+                            padding: EdgeInsets.only(top: 35),
+                            child: _matricula(),
+                          ),
+
+                          Padding(
+                            padding: EdgeInsets.only(top: 25),
+                            child: _contrasena(),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10),
+                            child: _recuerdame(),
+                          ),
+
+                          Padding(
+                            padding: EdgeInsets.only(top: 35),
+                            child: _iniciarsesion(),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10),
+                            child: _recuperarcontra(),
+                          )
+                          
+                        ],
                       ),
-                      SizedBox(height: 90.0),
-                      _matricula(),
-                      SizedBox(
-                        height: 30.0,
-                      ),
-                      _contrasena(),
-                      _recuperarcontra(),
-                      _recuerdame(),
-                      _iniciarsesion(),
-                      // _botonesredessociales(),
-                      _crearcuenta(),
-                    ],
-                  ),
-                ),
-              )
+                    ),
+                  ))
             ],
           ),
         ),
@@ -81,7 +67,47 @@ class Login extends State<HomePage> {
     );
   }
 
-  Widget _matricula() {
+  Widget _header() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: Image.asset(
+                'assets/images/logo azul.png',
+                width: MediaQuery.of(context).size.width / 4,
+              ),
+            ),
+          ),
+          Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.only(top: 100, bottom: 10),
+                child: Text(
+                  'INICIA SESIÓN',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,
+                  ),
+                ),
+              )
+            ),
+          Align(
+              alignment: Alignment.centerLeft,
+              child: Divider(height: 10, thickness: 10, endIndent: MediaQuery.of(context).size.width/2, color: Colors.blueAccent,)
+            )
+        ],
+      ),
+    );
+  }
+
+Widget _matricula() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -157,11 +183,11 @@ class Login extends State<HomePage> {
       alignment: Alignment.centerRight,
       child: FlatButton(
         onPressed: () {
-          Navigator.push(
-              context,
-              CupertinoPageRoute(
-                //builder: (context) => RecuperarContrasena(),
-              ));
+          // Navigator.push(
+          //     context,
+          //     CupertinoPageRoute(
+          //       builder: (context) => RecuperarContrasena(),
+          //     ));
         },
         padding: EdgeInsets.only(right: 0.0),
         child: Text(
@@ -212,11 +238,11 @@ class Login extends State<HomePage> {
             gravity: ToastGravity.CENTER,
           );
           //if (await logIn(userController.text, passwordController.text)) {
-            Navigator.pushReplacement(
-                context,
-                CupertinoPageRoute(
-              //    builder: (context) => MenuPrincipal(),
-                ));
+            // Navigator.pushReplacement(
+            //     context,
+            //     CupertinoPageRoute(
+            //   //    builder: (context) => MenuPrincipal(),
+            //     ));
             Fluttertoast.showToast(
               msg: "Bienvenido :D",
               toastLength: Toast.LENGTH_LONG,
@@ -232,13 +258,13 @@ class Login extends State<HomePage> {
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
+          borderRadius: BorderRadius.circular(10.0),
         ),
-        color: Color.fromRGBO(230, 81, 0, 1),
+        color: Color.fromRGBO(177, 205, 245, 0.8),
         child: Text(
           'INICIAR SESIÓN',
           style: TextStyle(
-            color: Colors.white,
+            color: Color.fromRGBO(4, 94, 223, 1),
             letterSpacing: 1.5,
             fontSize: 18.0,
             fontWeight: FontWeight.bold,
@@ -249,38 +275,14 @@ class Login extends State<HomePage> {
     );
   }
 
-  Widget _buildSocialBtn(Function onTap, AssetImage logo) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        height: 60.0,
-        width: 60.0,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black26,
-              offset: Offset(0, 2),
-              blurRadius: 6.0,
-            ),
-          ],
-          image: DecorationImage(
-            image: logo,
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _crearcuenta() {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            CupertinoPageRoute(
-             // builder: (context) => Registrar(),
-            ));
+        // Navigator.push(
+        //     context,
+        //     CupertinoPageRoute(
+        //      // builder: (context) => Registrar(),
+        //     ));
       },
       child: RichText(
         text: TextSpan(
@@ -306,4 +308,7 @@ class Login extends State<HomePage> {
       ),
     );
   }
+
 }
+  
+// }
