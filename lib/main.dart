@@ -4,6 +4,11 @@ import 'package:badoo/Presentacion/Pages/Login/LoginPage.dart';
 import 'package:badoo/Presentacion/Pages/Splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'Presentacion/Pages/Login/LoginPage.dart';
+import 'Presentacion/Pages/Login/LoginPage.dart';
+import 'Presentacion/Pages/Registro/registro.dart';
+import 'Presentacion/Pages/Registro/registro.dart';
  
 void main() => runApp(MyApp());
  
