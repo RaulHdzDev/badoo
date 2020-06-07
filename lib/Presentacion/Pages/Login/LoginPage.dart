@@ -1,4 +1,4 @@
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -160,7 +160,7 @@ class Login extends State<HomePage> {
           Navigator.push(
               context,
               CupertinoPageRoute(
-                builder: (context) => RecuperarContrasena(),
+                //builder: (context) => RecuperarContrasena(),
               ));
         },
         padding: EdgeInsets.only(right: 0.0),
@@ -211,24 +211,24 @@ class Login extends State<HomePage> {
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
           );
-          if (await logIn(userController.text, passwordController.text)) {
+          //if (await logIn(userController.text, passwordController.text)) {
             Navigator.pushReplacement(
                 context,
                 CupertinoPageRoute(
-                  builder: (context) => MenuPrincipal(),
+              //    builder: (context) => MenuPrincipal(),
                 ));
             Fluttertoast.showToast(
               msg: "Bienvenido :D",
               toastLength: Toast.LENGTH_LONG,
               gravity: ToastGravity.BOTTOM,
             );
-          } else {
+        //  } else {
             Fluttertoast.showToast(
               msg: "Usuario/Contraseña incorrecta",
               toastLength: Toast.LENGTH_SHORT,
               gravity: ToastGravity.CENTER,
             );
-          }
+        //  }
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
@@ -279,7 +279,7 @@ class Login extends State<HomePage> {
         Navigator.push(
             context,
             CupertinoPageRoute(
-              builder: (context) => Registrar(),
+             // builder: (context) => Registrar(),
             ));
       },
       child: RichText(
